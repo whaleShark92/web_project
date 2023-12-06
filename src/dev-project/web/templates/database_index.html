@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>參訪紀錄</h2>
+{% for record in visit_records %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ record.event_name }}</h3>
+    <p><strong>編號：</strong>{{ record.id }}</p>
+    <p><strong>日期：</strong>{{ record.date }}</p>
+    <p><strong>介紹內容：</strong>{{ record.content }}</p>
+</div>
+{% empty %}
+<p>沒有參訪紀錄。</p>
+{% endfor %}
+
+<h2>實驗室成員介紹</h2>
+{% for member in lab_members %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ member.name }}</h3>
+    <p><strong>編號：</strong>{{ member.id }}</p>
+    <p><strong>學號：</strong>{{ member.student_id }}</p>
+    <p><strong>系所：</strong>{{ member.department }}</p>
+    <p><strong>職位：</strong>{{ member.position }}</p>
+    <p><strong>介紹：</strong>{{ member.introduction }}</p>
+    <p><strong>學級：</strong>{{ member.student_level }}</p>
+</div>
+{% empty %}
+<p>沒有實驗室成員介紹。</p>
+{% endfor %}
+
+<h2>實驗室事件</h2>
+{% for event in lab_events %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ event.title }}</h3>
+    <p><strong>ID:</strong> {{ event.id }}, </p>
+    <p><strong>Date:</strong> {{ event.date }}, </p>
+    <p><strong>Event:</strong> {{ event.event }}, </p>
+    <p><strong>Content:</strong> {{ event.content }}</p>
+</div>
+{% empty %}
+<p>No lab events.</p>
+{% endfor %}
+
+<h2>競賽紀錄</h2>
+{% for record in competition_records %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ record.competition_name }}</h3>
+    <p><strong>ID:</strong> {{ record.id }}, </p>
+    <p><strong>Date:</strong> {{ record.date }}, </p>
+    <p><strong>Content:</strong> {{ record.content }}</p>
+</div>
+{% empty %}
+<p>No competition records.</p>
+{% endfor %}
+
+<h2>合成照片</h2>
+{% for photo in composite_photos %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ photo.content_title }}</h3>
+    <p><strong>編號：</strong>{{ photo.id }}</p>
+    <p><strong>模板 HTML 編號：</strong>{% if photo.template_html %}{{ photo.template_html.id }}{% endif %}</p>
+    <p><strong>事件：</strong>{{ photo.content_event }}</p>
+    <p><strong>內容區域A：</strong>{{ photo.content_a }}</p>
+    <p><strong>內容區域B：</strong>{{ photo.content_b }}</p>
+    <p><strong>內容區域C：</strong>{{ photo.content_c }}</p>
+    <p><strong>內容區域D：</strong>{{ photo.content_d }}</p>
+</div>
+{% empty %}
+<p>沒有合成照片。</p>
+{% endfor %}
+
+<h2>會議</h2>
+{% for meeting in meetings %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ meeting.meeting_name }}</h3>
+    <p><strong>編號：</strong>{{ meeting.id }}</p>
+    <p><strong>日期：</strong>{{ meeting.date }}</p>
+    <p><strong>會議連結：</strong>{{ meeting.meeting_link }}</p>
+    <p><strong>會議內容：</strong>{{ meeting.content }}</p>
+</div>
+{% empty %}
+<p>沒有會議。</p>
+{% endfor %}
+
+<h2>獎狀展示</h2>
+{% for award in award_displays %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ award.award_name }}</h3>
+    <p><strong>編號：</strong>{{ award.id }}</p>
+    <p><strong>日期：</strong>{{ award.date }}</p>
+    <p><strong>介紹內容：</strong>{{ award.content }}</p>
+</div>
+{% empty %}
+<p>沒有獎狀展示。</p>
+{% endfor %}
+
+<h2>設備展示</h2>
+{% for equipment in equipment_displays %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>{{ equipment.equipment_name }}</h3>
+    <p><strong>編號：</strong>{{ equipment.id }}</p>
+    <p><strong>介紹內容：</strong>{{ equipment.content }}</p>
+</div>
+{% empty %}
+<p>沒有設備展示。</p>
+{% endfor %}
+
+<h2>多媒體</h2>
+{% for media in medias %}
+  <div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>ID：{{ media.id }}</h3>
+    {% if media.content_type %}
+      <p><strong>內容類型 ID：</strong>{{ media.content_type.id }}</p>
+      {% if media.object_id %}
+        <p><strong>物件 ID：</strong>{{ media.object_id }}</p>
+      {% endif %}
+      {% if media.participant_id %}
+        <p><strong>參與者 ID：</strong>{{ media.participant_id.id }}</p>
+      {% endif %}
+      {% if media.path %}
+        <img style="max-width: 450px; max-height: 300px" src="{{ media.path.url }}">
+      {% endif %}
+      {% if media.media_type %}
+        {% if media.media_type == '圖片' %}
+          <!-- 圖片顯示程式碼 -->
+        {% else %}
+          <!-- 影片顯示程式碼 -->
+        {% endif %}
+      {% endif %}
+      {% if media.content %}
+        <!-- 內容顯示程式碼 -->
+      {% endif %}
+    {% endif %}
+  </div>
+{% empty %}
+  <p>沒有多媒體。</p>
+{% endfor %}
+
+
+<h2>活動參與人員</h2>
+
+{% for participant in event_participants %}
+
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+
+    <h3>ID：{{ participant.id }}</h3>
+
+    {% if participant.content_type %}
+    <p><strong>內容類型 ID：</strong>{{ participant.content_type.id }}</p>
+    {% if participant.object_id %}
+    <p><strong>物件 ID：</strong>{{ participant.object_id }}</p>
+    {% endif %}
+    {% if participant.participant_id %}
+    <p><strong>參與者 ID：</strong>{{ participant.participant_id.id }}</p>
+    {% endif %}
+    {% endif %}
+
+</div>
+
+{% empty %}
+<p>沒有活動參與人員。</p>
+
+{% endfor %}
+
+<h2>範本html</h2>
+
+{% for template in template_htmls %}
+
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+
+    <h3>ID：{{ template.id }}</h3>
+
+    <p><strong>模板路徑：</strong>{{ template.template_path }}</p>
+
+</div>
+
+{% empty %}
+<p>沒有範本html。</p>
+
+{% endfor %}
+
+<!-- Repeat for other models -->
+{% endblock %}

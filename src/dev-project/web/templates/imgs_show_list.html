@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>多媒體</h2>
+{% for media in medias %}
+<div style="border:1px solid #000; margin:10px; padding:10px;">
+    <h3>ID：{{ media.id }}</h3>
+    {% if media.content_type %}
+    <p><strong>內容類型 ID：</strong>{{ media.content_type.id }}</p>
+    {% if media.object_id %}
+    <p><strong>物件 ID：</strong>{{ media.object_id }}</p>
+    {% endif %}
+    {% if media.participant_id %}
+    <p><strong>參與者 ID：</strong>{{ media.participant_id.id }}</p>
+    {% endif %}
+    {% if media.path %}
+    <img style="max-width: 450px; max-height: 300px" src="{{ media.path.url }}">
+    {% endif %}
+    {% if media.media_type %}
+    {% if media.media_type == '圖片' %}
+    <!-- 圖片顯示程式碼 -->
+    {% else %}
+    <!-- 影片顯示程式碼 -->
+    {% endif %}
+    {% endif %}
+    {% if media.content %}
+    <!-- 內容顯示程式碼 -->
+    {% endif %}
+    {% endif %}
+</div>
+{% empty %}
+<p>沒有多媒體。</p>
+{% endfor %}
+{% endblock %}

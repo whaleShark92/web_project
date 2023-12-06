@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>實驗室成員介紹列表</h2>
+  <ul>
+    {% for member in lab_members %}
+      <li>
+        <h3>{{ member.name }}</h3>
+        <p>學號：{{ member.student_id }}</p>
+        <p>系級：{{ member.department }}</p>
+        <p>擔任職位：{{ member.position }}</p>
+        <p>介紹內容：{{ member.introduction }}</p>
+      </li>
+    {% empty %}
+      <li>沒有成員介紹。</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

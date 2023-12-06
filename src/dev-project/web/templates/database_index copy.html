@@ -1,0 +1,58 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Visit Records</h2>
+  {% for record in visit_records %}
+    <p>ID: {{ record.id }}, Event Name: {{ record.event_name }}, Date: {{ record.date }}, Content: {{ record.content }}</p>
+  {% endfor %}
+
+  <h2>Lab Members</h2>
+  {% for member in lab_members %}
+    <p>ID: {{ member.id }}, Name: {{ member.name }}, Student ID: {{ member.student_id }}, Department: {{ member.department }}, Position: {{ member.position }}, Introduction: {{ member.introduction }}, Student Level: {{ member.student_level }}</p>
+  {% endfor %}
+
+  <h2>Lab Events</h2>
+  {% for event in lab_events %}
+    <p>ID: {{ event.id }}, Title: {{ event.title }}, Date: {{ event.date }}, Event: {{ event.event }}, Content: {{ event.content }}</p>
+  {% endfor %}
+
+  <h2>Competition Records</h2>
+  {% for record in competition_records %}
+    <p>ID: {{ record.id }}, Competition Name: {{ record.competition_name }}, Date: {{ record.date }}, Content: {{ record.content }}</p>
+  {% endfor %}
+
+  <h2>Composite Photos</h2>
+  {% for photo in composite_photos %}
+    <p>ID: {{ photo.id }}{% if photo.template_html %}, Template HTML ID: {{ photo.template_html.id }}{% endif %}, Content Title: {{ photo.content_title }}, Content Event: {{ photo.content_event }}, Content A: {{ photo.content_a }}, Content B: {{ photo.content_b }}, Content C: {{ photo.content_c }}, Content D: {{ photo.content_d }}</p>
+  {% endfor %}
+
+  <h2>Meetings</h2>
+  {% for meeting in meetings %}
+    <p>ID: {{ meeting.id }}, Meeting Name: {{ meeting.meeting_name }}, Date: {{ meeting.date }}, Meeting Link: {{ meeting.meeting_link }}, Content: {{ meeting.content }}</p>
+  {% endfor %}
+
+  <h2>Award Displays</h2>
+  {% for award in award_displays %}
+    <p>ID: {{ award.id }}, Award Name: {{ award.award_name }}, Date: {{ award.date }}, Content: {{ award.content }}</p>
+  {% endfor %}
+
+  <h2>Equipment Displays</h2>
+  {% for equipment in equipment_displays %}
+    <p>ID: {{ equipment.id }}, Equipment Name: {{ equipment.equipment_name }}, Content: {{ equipment.content }}</p>
+  {% endfor %}
+
+  <h2>Medias</h2>
+  {% for media in medias %}
+    <p>ID :{{ media.id }}{% if media.content_type %} ,Content Type ID :{{ media.content_type.id }}{% endif %}{% if media.object_id %} ,Object ID :{{ media.object_id }}{% endif %} ,Media Type :{{ media.media_type }} ,Content :{{ media.content }} ,Path :{{ media.path }}</p>
+  {% endfor %}
+
+  <h2>Event Participants</h2>
+  {% for participant in event_participants %}
+    <p>ID :{{ participant.id }}{% if participant.content_type %} ,Content Type ID :{{ participant.content_type.id }}{% endif %}{% if participant.object_id %} ,Object ID :{{ participant.object_id }}{% endif %}{% if participant.participant_id %} ,Participant ID :{{ participant.participant_id.id }}{% endif %}</p>
+  {% endfor %}
+
+   <h2>Template HTMLs</h2>
+   {% for template in template_htmls %}
+     <p>ID :{{ template.id }} ,Template Path :{{ template.template_path }}</p>
+   {% endfor %}
+{% endblock %}

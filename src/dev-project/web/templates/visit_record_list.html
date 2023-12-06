@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>參訪紀錄列表</h2>
+  <ul>
+    {% for record in visit_records %}
+      <li>
+        <h3>{{ record.event_name }}</h3>
+        <p>ID：{{ record.id }}</p>
+        <p>時間：{{ record.date }}</p>
+        <p>內容：{{ record.content }}</p>
+      </li>
+    {% empty %}
+      <li>沒有參訪紀錄。</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
